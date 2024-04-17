@@ -1,12 +1,10 @@
-/*Sixte Morio*/
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
-import newTripResponse from '../pages/newTripResponse.vue'
-
+import newTripResponse from '../pages/newTripResponse.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/trip', component: newTripResponse },
+  { path: '/trip/:id', component: newTripResponse },
 ];
 
 const router = createRouter({
