@@ -62,7 +62,7 @@ body {
     <ul>
       <li v-for="(step, index) in itinerary" :key="index">
         <h3>{{ `Étape ${step.num}: ${step.name}` }}</h3>
-        <p>{{ `Distance: ${step.km !== null ? step.km : 0}Km` }}</p>
+        <p>{{ `Distance: ${step.km !== null ? step.km : 0} km` }}</p>
         <p>{{ `Description: ${step.desc}` }}</p>
       </li>
     </ul>
