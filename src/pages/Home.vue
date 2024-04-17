@@ -30,17 +30,6 @@ const createNewTrip = async () => {
   }
 };
 
-// Fonction pour afficher un exemple
-const showExample = async () => {
-  try {
-    const response = await fetch('URL_de_votre_backend/api/exemple');
-    const data = await response.json();
-    history.value = data;
-  } catch (error) {
-    console.error('Erreur lors de la récupération de l\'exemple :', error);
-  }
-};
-
 // Function History
 const loadHistory = async () => {
   try {
@@ -69,7 +58,7 @@ onMounted(() => {
 
     <!-- Buttons -->
     <button @click="createNewTrip">Voir l'itinéraire</button>
-    <button @click="showExample">Voir un exemple</button>
+    <button @click="">Voir un exemple</button>
 
     <!-- History -->
     <div v-if="history.length > 0">
