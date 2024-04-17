@@ -1,54 +1,69 @@
 <script setup>
-import { ref, onMounted } from 'vue';
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
-// Référence à la carte Leaflet
-const map = ref(null);
+// Router
+const route = useRoute();
 
-// Données de l'itinéraire
-const itinerary = ref([
-  {
-    name: 'Gotham City',
-    km: 0,
-    desc: 'Départ de Gotham City, préparation et vérification de la batmobile.',
-    latlng: [40.7128, -74.0060] // Exemple de coordonnées pour Gotham City
-  },
-  // Ajoutez les autres étapes ici
-]);
+// Data itinerary
+const itinerary = ref([]);
 
-// Fonction pour initialiser la carte Leaflet
-const initMap = () => {
-  map.value = L.map('map').setView([40.7128, -74.0060], 10); // Centre la carte sur Gotham City avec un zoom de 10
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map.value); // Ajoute une couche de tuiles OpenStreetMap
+onMounted(async () => {
+  console.log(route.params.id);
+  const map = L.map('map').setView([0, 0], 2);
 
-  // Ajoute les marqueurs pour chaque étape de l'itinéraire
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  try {
+    const id = route.params.id;
+    const response = await fetch(`http://127.0.0.1:7001/v1/trip/${id}`);
+    const data = await response.json();
+    console.log(data)
+    itinerary.value = data.resIa;
+  } catch (error) {
+    console.log(route.params.id)
+    //console.error('Erreur lors de la récupération des données de l\'itinéraire :', error);
+  }
+
+  // Markers
   itinerary.value.forEach(step => {
-    L.marker(step.latlng).addTo(map.value).bindPopup(step.name);
+    L.marker(step.latlng).addTo(map).bindPopup(step.name);
   });
-};
-
-// Appel de la fonction d'initialisation de la carte lors du montage du composant
-onMounted(() => {
-  initMap();
 });
 </script>
 
 <style>
-/* Assurez-vous d'importer les styles CSS de Leaflet dans votre projet */
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#map {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  width: 200px;
+  height: 100px;
+
+}
 </style>
 
 <template>
   <div>
-    <!-- Carte Leaflet -->
-    <div ref="map" style="height: 400px;"></div>
+    <div id="map"></div>
 
-    <!-- Liste des étapes de l'itinéraire -->
+    <router-link to="/">Retour à la page d'accueil</router-link>
+
     <h2>Itinéraire</h2>
     <ul>
       <li v-for="(step, index) in itinerary" :key="index">
-        <h3>{{ `Étape ${index + 1}: ${step.name}` }}</h3>
+        <h3>{{ `Étape ${step.num}: ${step.name}` }}</h3>
+        <p>{{ `Distance: ${step.km !== null ? step.km : 0}Km` }}</p>
         <p>{{ `Description: ${step.desc}` }}</p>
-        <p>{{ `Kilomètres: ${step.km}` }}</p>
       </li>
     </ul>
   </div>
