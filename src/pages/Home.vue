@@ -12,7 +12,7 @@ const router = useRouter();
 // Function new Trip
 const createNewTrip = async () => {
   try {
-    const response = await fetch('URL_de_votre_backend/api/newTrip', {
+    const response = await fetch('http://127.0.0.1:7001/v1/newTrip', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,6 @@ const createNewTrip = async () => {
       throw new Error('Erreur lors de la création du nouveau voyage');
     }
 
-    // Redirection vers la page pour afficher la réponse de l'IA
     router.push('/newTripResponse');
   } catch (error) {
     console.error('Erreur lors de la création du nouveau voyage :', error);
@@ -34,7 +33,6 @@ const createNewTrip = async () => {
 // Fonction pour afficher un exemple
 const showExample = async () => {
   try {
-    // Appel à l'API pour récupérer un exemple depuis la base de données
     const response = await fetch('URL_de_votre_backend/api/exemple');
     const data = await response.json();
     history.value = data;
@@ -46,7 +44,7 @@ const showExample = async () => {
 // Function History
 const loadHistory = async () => {
   try {
-    const response = await fetch('URL_de_votre_backend/api/history');
+    const response = await fetch('http://127.0.0.1:7001/v1/history');
     const data = await response.json();
     history.value = data;
   } catch (error) {
