@@ -23,8 +23,10 @@ const createNewTrip = async () => {
     if (!response.ok) {
       throw new Error('Erreur lors de la création du nouveau voyage');
     }
+    const responseData = await response.json();
+    const newTripId = responseData.id;
 
-    router.push('/trip');
+    router.push(`/trip/${newTripId}`);
   } catch (error) {
     console.error('Erreur lors de la création du nouveau voyage :', error);
   }
@@ -65,7 +67,7 @@ onMounted(() => {
       <h2>Historique des précédents voyages</h2>
       <ul>
         <li v-for="(trip, index) in history" :key="index">
-          {{ trip.content }}
+          <router-link :to="'/trip/' + trip.id">{{ trip.content }}</router-link>
         </li>
       </ul>
     </div>
