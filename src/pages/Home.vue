@@ -24,7 +24,7 @@ const createNewTrip = async () => {
       throw new Error('Erreur lors de la création du nouveau voyage');
     }
 
-    router.push('/newTripResponse');
+    router.push('/trip');
   } catch (error) {
     console.error('Erreur lors de la création du nouveau voyage :', error);
   }
