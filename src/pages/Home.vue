@@ -12,7 +12,7 @@ const router = useRouter();
 // Function new Trip
 const createNewTrip = async () => {
   try {
-    const response = await fetch('http://127.0.0.1:7001/v1/newTrip', {
+    const response = await fetch('http://127.0.0.1:7001/v1/trip', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const createNewTrip = async () => {
 // Function History
 const loadHistory = async () => {
   try {
-    const response = await fetch('http://127.0.0.1:7001/v1/history');
+    const response = await fetch('http://127.0.0.1:7001/v1/trip');
     const data = await response.json();
     history.value = data;
   } catch (error) {
