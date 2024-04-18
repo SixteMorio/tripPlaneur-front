@@ -116,6 +116,7 @@ onMounted(async () => {
         <h2>Modifier le prompt</h2>
         <input type="text" v-model="newPrompt" placeholder="Nouveau prompt">
         <button @click="updatePrompt(); close()">Valider</button>
+        <button @click="close()">Annuler</button>
       </template>
     </Modal>
   </div>
