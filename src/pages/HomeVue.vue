@@ -54,7 +54,7 @@ onMounted(() => {
   max-width: 96vw;
   background-color: #2F2E2B;
   margin: 0 auto;
-  padding: 2vh;
+  padding: 2rem;
 }
 
 .header {
@@ -64,8 +64,8 @@ onMounted(() => {
   justify-content: center;
 
   h1 {
-    font-size: 4vw;
-    margin-top: 4vh;
+    font-size: 3vh;
+    margin-top: 4rem;
     margin-bottom: 0;
     color: #FFFFFF;
   }
@@ -74,8 +74,6 @@ onMounted(() => {
     margin-top: 0;
     margin-bottom: 4vh;
   }
-
-
 }
 
 h2 {
@@ -90,11 +88,11 @@ h2 {
     display: flex;
     justify-content: center;
     width: 84%;
-    padding: 2vh;
+    padding: 1rem;
     margin-bottom: 4vh;
     background-color: #242321;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 1rem;
     color: #6D695E;
     border: 1px solid #6D695E;
   }
@@ -109,7 +107,7 @@ h2 {
 button {
   display: block;
   width: 40%;
-  padding: 1vh;
+  padding: 1em;
   color: #FFFFFF;
   margin-bottom: 4vh;
   cursor: pointer;
@@ -118,14 +116,14 @@ button {
 .btnOne {
   background-color: #6D695E;
   border: none;
-  border-radius: 5px;
-  margin-right: 1vh;
+  border-radius: 1em;
+  margin-right: 1vw;
 }
 
 .btnTwo {
-  border: 1px solid 5px;
+  border: 1px solid 1em;
   border-color: #6D695E;
-  margin-left: 1vh;
+  margin-left: 1vw;
 }
 
 ul {
@@ -139,11 +137,14 @@ li {
 
 li a {
   display: block;
-  padding: 2vh;
+  padding: 1rem;
   background-color: #242321;
-  border-radius: 5px;
+  border-radius: 1em;
   text-decoration: none;
   color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (min-width: 768px) {
