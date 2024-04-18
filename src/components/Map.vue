@@ -16,26 +16,30 @@ const props = defineProps({
 
 onMounted(async () => {
   console.log(route.params.id);
-  const map = L.map('map').setView([0, 0], 2);
+  const map = L.map('map').setView([0, 0], 6);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);;
+
 
   // Markers
   props.locations.forEach(step => {
     L.marker(step.latlng).addTo(map).bindPopup(step.name);
   });
+
+  //Group Marker
+  const group = new L.featuresGroup(props.locations);
+  map.fitBounds(group.getBounds());
 })
 </script>
 
 <style scoped>
 #map {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 200px;
-  height: 100px;
-
+  width: 100%;
+  height: 40svh;
 }
 </style>
 

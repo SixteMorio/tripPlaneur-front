@@ -59,21 +59,49 @@ onMounted(async () => {
 </script>
 
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  position: relative;
+.body {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #2F2E2B;
+
+  h2 {
+    color: #6D695E;
+  }
+
+  ul li {
+    list-style: none;
+
+    h3 {
+      color: #FFFFFF;
+    }
+
+    p {
+      color: #CECECE;
+    }
+  }
+
+  .menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4vh;
+  }
 }
 </style>
 
-
 <template>
-  <div>
-    <Map v-if="itinerary.length > 0" :locations="itinerary" />
+  <Map v-if="itinerary.length > 0" :locations="itinerary" />
+  <div class="body">
 
-    <router-link to="/">Retour à la page d'accueil</router-link>
+    <router-link to="/"><img src="../assets/btnBack.svg" alt="button back" /></router-link>
 
-    <h2>Itinéraire</h2>
+    <div class=".menu-container">
+      <h2>Itinéraire</h2>
+      <!-- Button prompt update -->
+      <img @click="$refs.modal.open" src="../assets/update.svg" alt="update the prompt" />
+    </div>
+
     <ul>
       <li v-for="(step, index) in itinerary" :key="index">
         <h3>{{ `Étape ${step.num}: ${step.name}` }}</h3>
@@ -81,9 +109,6 @@ body {
         <p>{{ `Description: ${step.desc}` }}</p>
       </li>
     </ul>
-
-    <!-- Bouton pour mettre à jour le prompt et la réponse de l'IA -->
-    <button @click="$refs.modal.open">Modifier le prompt</button>
 
     <!-- Modale -->
     <Modal ref="modal">

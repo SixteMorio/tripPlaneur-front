@@ -43,6 +43,11 @@ const loadHistory = async () => {
   }
 };
 
+// Function exempleTrip
+const exampleTrip = () => {
+  router.push(`/trip/421b6857-2714-4c45-95f8-7604677b404a`);
+};
+
 onMounted(() => {
   loadHistory();
 });
@@ -51,10 +56,9 @@ onMounted(() => {
 <style scoped>
 .body {
   font-family: Arial, sans-serif;
-  max-width: 96vw;
-  background-color: #2F2E2B;
   margin: 0 auto;
   padding: 2rem;
+  background-color: #2F2E2B;
 }
 
 .header {
@@ -90,11 +94,10 @@ h2 {
     width: 84%;
     padding: 1rem;
     margin-bottom: 4vh;
-    background-color: #242321;
-    box-sizing: border-box;
     border-radius: 1rem;
-    color: #6D695E;
     border: 1px solid #6D695E;
+    color: #FFFFFF;
+    background-color: #242321;
   }
 }
 
@@ -108,22 +111,23 @@ button {
   display: block;
   width: 40%;
   padding: 1em;
-  color: #FFFFFF;
   margin-bottom: 4vh;
+  border-radius: 1em;
+  color: #FFFFFF;
   cursor: pointer;
 }
 
-.btnOne {
-  background-color: #6D695E;
-  border: none;
-  border-radius: 1em;
+.btn-primary {
   margin-right: 1vw;
+  border: none;
+  background-color: #6D695E;
 }
 
-.btnTwo {
-  border: 1px solid 1em;
-  border-color: #6D695E;
+.btn-secondary {
   margin-left: 1vw;
+  border: solid;
+  border-color: #6D695E;
+  background-color: #2F2E2B;
 }
 
 ul {
@@ -138,13 +142,13 @@ li {
 li a {
   display: block;
   padding: 1rem;
-  background-color: #242321;
   border-radius: 1em;
   text-decoration: none;
-  color: #FFFFFF;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #FFFFFF;
+  background-color: #242321;
 }
 
 @media (min-width: 768px) {
@@ -164,6 +168,7 @@ li a {
 }
 </style>
 
+
 <template>
   <div class="body">
     <div class="header">
@@ -182,9 +187,8 @@ li a {
     <!-- Buttons -->
     <div class="button-container">
       <!-- button-primary et secondary -->
-      <button class="btnOne" @click="createNewTrip">Voir l'itinéraire</button>
-      <button class="btnTwo"><router-link :to="`/trip/421b6857-2714-4c45-95f8-7604677b404a`">Voir un
-          exemple</router-link></button>
+      <button class="btn-primary" @click="createNewTrip">Voir l'itinéraire</button>
+      <button class="btn-secondary" @click="exampleTrip">Voir un exemple</button>
     </div>
 
     <!-- History -->
