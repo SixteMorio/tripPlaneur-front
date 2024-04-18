@@ -1,12 +1,18 @@
 <script setup>
 import L from 'leaflet';
-import { onMounted } from 'vue';
+import 'leaflet/dist/leaflet.css';
+import { onMounted, defineProps } from 'vue';
 import { useRoute } from 'vue-router';
 
 // Router
 const route = useRoute();
 
-
+const props = defineProps({
+  locations: {
+    name: String,
+    latlng: [Number, Number]
+  }
+})
 
 onMounted(async () => {
   console.log(route.params.id);
@@ -14,10 +20,8 @@ onMounted(async () => {
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-  await fetchItinerary();
-
   // Markers
-  itinerary.value.forEach(step => {
+  props.locations.forEach(step => {
     L.marker(step.latlng).addTo(map).bindPopup(step.name);
   });
 })
