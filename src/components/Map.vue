@@ -31,7 +31,7 @@ onMounted(async () => {
   });
 
   //Group Marker
-  const group = new L.featuresGroup(props.locations);
+  const group = new L.featureGroup(props.location);
   map.fitBounds(group.getBounds());
 })
 </script>
