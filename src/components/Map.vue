@@ -26,12 +26,15 @@ onMounted(async () => {
 
 
   // Markers
+  const markers = []
   props.locations.forEach(step => {
-    L.marker(step.latlng).addTo(map).bindPopup(step.name);
+    const marker = L.marker(step.latlng).bindPopup(step.name);
+    markers.push(marker);
   });
 
   //Group Marker
-  const group = new L.featureGroup(props.location);
+  const group = new L.featureGroup(markers);
+  group.addTo(map);
   map.fitBounds(group.getBounds());
 })
 </script>
