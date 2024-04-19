@@ -17,7 +17,7 @@ const newPrompt = ref('');
 // Modal
 const modal = ref()
 
-
+//fetchItinerary
 const fetchItinerary = async () => {
   try {
     const id = route.params.id;
