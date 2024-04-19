@@ -43,12 +43,12 @@ const updatePrompt = async () => {
     });
 
     if (!response.ok) {
-      throw new Error('Erreur lors de la mise à jour du prompt');
+      throw new Error('Error updating prompt');
     }
 
     await fetchItinerary();
   } catch (error) {
-    console.error('Erreur lors de la mise à jour du prompt :', error);
+    console.error('Error updating prompt :', error);
   }
 };
 
@@ -87,6 +87,53 @@ onMounted(async () => {
     align-items: center;
     margin-bottom: 4vh;
   }
+
+  input[type="textarea"] {
+    display: flex;
+    justify-content: center;
+    width: 84%;
+    padding: 1rem;
+    margin-bottom: 4vh;
+    border-radius: 1rem;
+    border: 1px solid #6D695E;
+    color: #FFFFFF;
+    background-color: #242321;
+  }
+
+  button {
+    display: block;
+    width: 40%;
+    padding: 1em;
+    margin-bottom: 4vh;
+    border-radius: 1em;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+  }
+
+  .button-primary {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.5em;
+    background-color: #6D695E;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .button-secondary {
+    padding: 0.5em 1em;
+    border: solid;
+    border-radius: 0.5em;
+    border-color: #6D695E;
+    color: #FFFFFF;
+    background-color: #2F2E2B;
+    cursor: pointer;
+  }
 }
 </style>
 
@@ -96,7 +143,7 @@ onMounted(async () => {
 
     <router-link to="/"><img src="../assets/btnBack.svg" alt="button back" /></router-link>
 
-    <div class=".menu-container">
+    <div class="menu-container">
       <h2>Itinéraire</h2>
       <!-- Button prompt update -->
       <img @click="$refs.modal.open" src="../assets/update.svg" alt="update the prompt" />
@@ -114,9 +161,12 @@ onMounted(async () => {
     <Modal ref="modal">
       <template #default="{ close }">
         <h2>Modifier le prompt</h2>
-        <input type="text" v-model="newPrompt" placeholder="Nouveau prompt">
-        <button @click="updatePrompt(); close()">Valider</button>
-        <button @click="close()">Annuler</button>
+        <input type="textarea" v-model="newPrompt" placeholder="Nouveau prompt">
+        <div class="button-container">
+          <button class="button-primary" @click="updatePrompt(); close()">Valider</button>
+          <button class="button-secondary" @click="close()">Annuler</button>
+        </div>
+
       </template>
     </Modal>
   </div>
