@@ -32,15 +32,18 @@ defineExpose({
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-content {
   position: relative;
-  margin: 10% auto;
+  margin: 5% auto;
   width: 50%;
-  background-color: #fff;
-  padding: 20px;
+  padding: 1em;
+
+  border: none;
+  border-radius: 1em;
+  background-color: #2F2E2B;
 }
 
 .modal-close {
